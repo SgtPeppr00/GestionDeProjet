@@ -1,5 +1,6 @@
 import { Hono } from 'hono'
 import { sign } from 'hono/jwt'
+import bcrypt from 'bcryptjs'
 import sql from '../db'
 
 const auth = new Hono()
@@ -17,7 +18,7 @@ auth.post('/users', async (c) => {
     return c.json({ error: 'Email déjà utilisé' }, 409)
   }
 
-  const hashedPassword = await Bun.password.hash(password)
+  const hashedPassword = await bcrypt.hash(password, 10)
 
   const [user] = await sql`
     INSERT INTO users (email, password, name)
@@ -41,7 +42,7 @@ auth.post('/auth/login', async (c) => {
     return c.json({ error: 'Email ou mot de passe incorrect' }, 401)
   }
 
-  const valid = await Bun.password.verify(password, user.password)
+  const valid = await bcrypt.compare(password, user.password)
   if (!valid) {
     return c.json({ error: 'Email ou mot de passe incorrect' }, 401)
   }

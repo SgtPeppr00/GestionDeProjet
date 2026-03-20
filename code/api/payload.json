@@ -1,0 +1,1 @@
+{"requestContext":{"http":{"method":"POST"},"domainName":"test.com"},"rawPath":"/auth/login","rawQueryString":"","headers":{"content-type":"application/json"},"body":"{\"email\":\"test@test.com\",\"password\":\"password123\"}"}

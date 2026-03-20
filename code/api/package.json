@@ -9,11 +9,14 @@
     "migrate": "bun run src/migrations/migrate.ts"
   },
   "dependencies": {
-    "hono": "latest",
-    "@hono/node-server": "latest",
+    "@hono/node-server": "^1.19.11",
+    "aws-lambda": "^1.0.7",
+    "bcryptjs": "^3.0.3",
+    "hono": "^4.12.8",
     "postgres": "latest"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^3.0.0",
     "@types/bun": "latest",
     "bun-types": "latest"
   }
